@@ -9,6 +9,9 @@
 <meta charset="UTF-8" />
 </head>
 <body>
-안녕하세요as
+<h1>메인페이지</h1>
+<div><a href="list.do">게시판</a></div>
+<div><a href="login.do">로그인</a></div>
+<div><a href="list.do">회원가입</a></div>
 </body>
 </html>
