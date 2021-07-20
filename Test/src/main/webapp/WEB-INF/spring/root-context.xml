@@ -16,19 +16,18 @@
 		<property name="password" value="1234" />
 	</bean>
 
-	<!-- Mybatis 연동 -->
+	<!-- SqlSessionFactory : 설정 파일을 읽어들여 마이바티스에서 작업을 수행하는 SqlSession 생성 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
-		<property name="mapperLocations" value="classpath:mappers/**/*mapper.xml" />
-	</bean>
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+		<property name="mapperLocations" value="classpath:/mappers/*.xml" />
 	</bean>
 
-	<context:component-scan base-package="kr.co.test" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
-	</context:component-scan>
+	<!-- SqlSessionTemplate : 마이바티스 스프링 연동 모듈을 사용해 트랜잭션 처리, open/close, 스레드 안정한 SqlSession 객체를 지원 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
+	<!-- DAO기반으로 DAO를 작성할 경우 스프링이 아닌 마이바티스가 DAO를 생성한 후 마이바티스 스프링 연동 모듈을 사용해 스프링 빈으로 등록 -->
+	<mybatis-spring:scan base-package="kr.co.test.**.mapper" />
 </beans>

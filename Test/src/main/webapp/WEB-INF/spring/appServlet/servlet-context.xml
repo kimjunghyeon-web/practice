@@ -19,9 +19,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="kr.co.test" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-	</context:component-scan>
+	<context:component-scan base-package="kr.co.test.*" />
 
 	<!-- Tiles -->
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
