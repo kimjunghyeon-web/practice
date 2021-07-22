@@ -1,5 +1,10 @@
 package kr.co.test.board.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class BoardVO {
 	private int bno; // 게시물 번호
 	private String title; // 제목

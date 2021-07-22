@@ -10,4 +10,7 @@ public interface BoardService {
 
 	public BoardVO getBoardView(HashMap<String, Object> param);
 
+	public void insertBoard(BoardVO boardVO);
+
+	public void boardDelete(HashMap<String, Object> param);
 }

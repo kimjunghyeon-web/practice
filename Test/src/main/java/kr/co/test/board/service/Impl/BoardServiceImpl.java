@@ -25,4 +25,14 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.getBoardView(param);
 	}
 
+	@Override
+	public void insertBoard(BoardVO boardVO) {
+		boardMapper.insertBoard(boardVO);
+	}
+
+	@Override
+	public void boardDelete(HashMap<String, Object> param) {
+		boardMapper.boardDelete(param);
+	}
+
 }

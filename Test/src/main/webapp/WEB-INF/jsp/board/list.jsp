@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-	function goList() {
+	function goMain() {
 		location.href = "home.do";
 	}
 	
@@ -20,9 +20,7 @@
 		
 	}
 	function register() {
-		if(confirm("등록하시겠습니까?")) {
- 			console.log(${pageContext.request.contextPath});
-		}
+		location.href ="list_write.do";
 	}
 	
 
@@ -66,5 +64,5 @@
 			</tbody>
 		</table>
 		<button type="button" class="btn btn-outline-primary" onclick="javascript:register()">등록</button>
-		<button type="button" class="btn btn-outline-primary" onclick="javascript:goList()">HOME</button>
+		<button type="button" class="btn btn-outline-primary" onclick="javascript:goMain()">HOME</button>
 	</div>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -6,7 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${ctxp}/css/reset.css">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>PracticePage</title>
 <style>
 * {
@@ -39,6 +39,7 @@
 	width: 85%;
 	background-color: #f9f3e3;
 	border:1px solid gray;
+	overflow: auto;
 }
 
 #footer {
@@ -51,7 +52,8 @@
 }
 
 #left, #main {
-	min-height: 700px;
+	min-height: 800px;
+	max-height: 800px;
 }
 </style>
 </head>

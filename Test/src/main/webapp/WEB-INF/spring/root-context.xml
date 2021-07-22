@@ -25,9 +25,14 @@
 
 	<!-- SqlSessionTemplate : 마이바티스 스프링 연동 모듈을 사용해 트랜잭션 처리, open/close, 스레드 안정한 SqlSession 객체를 지원 -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
+	<!-- JDBC기반 트랜잭션 관리자 생성 -->
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="txManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<!-- DAO기반으로 DAO를 작성할 경우 스프링이 아닌 마이바티스가 DAO를 생성한 후 마이바티스 스프링 연동 모듈을 사용해 스프링 빈으로 등록 -->
 	<mybatis-spring:scan base-package="kr.co.test.**.mapper" />
 </beans>
