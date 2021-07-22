@@ -6,18 +6,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardVO {
-	private int bno; // 게시물 번호
+	private Integer bno; // 게시물 번호
 	private String title; // 제목
 	private String content; // 내용
 	private String writer; // 작성자
 	private String regDate; // 작성일
-	private int viewCnt; // 조회수
+	private Integer viewCnt; // 조회수
 
-	public int getBno() {
+	public Integer getBno() {
 		return bno;
 	}
 
-	public void setBno(int bno) {
+	public void setBno(Integer bno) {
 		this.bno = bno;
 	}
 
@@ -53,11 +53,11 @@ public class BoardVO {
 		this.regDate = regDate;
 	}
 
-	public int getViewCnt() {
+	public Integer getViewCnt() {
 		return viewCnt;
 	}
 
-	public void setViewCnt(int viewCnt) {
+	public void setViewCnt(Integer viewCnt) {
 		this.viewCnt = viewCnt;
 	}
 

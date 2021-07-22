@@ -48,4 +48,17 @@ public class BoardTest {
 		List<BoardVO> list = mapper.getBoardList();
 		System.out.println(list.size());
 	}
+
+//	@Test
+//	@Transactional
+	public void modifyTest() {
+
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("bno", 2);
+		param.put("title", "HI");
+		param.put("content", "안녕하세요");
+		mapper.boardModify(param);
+
+		System.out.println(mapper.getBoardView(param));
+	}
 }

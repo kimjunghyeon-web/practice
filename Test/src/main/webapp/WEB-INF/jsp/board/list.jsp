@@ -66,3 +66,21 @@
 		<button type="button" class="btn btn-outline-primary" onclick="javascript:register()">등록</button>
 		<button type="button" class="btn btn-outline-primary" onclick="javascript:goMain()">HOME</button>
 	</div>
+		<div id="pagination">
+		<ul class="pagination">
+				<c:if test="${page.prev > 0 }">
+					<li><a href="/pboard/board/list?pageno=${page.pageno }">이전으로</a></li>
+				</c:if>
+				<c:forEach begin="${page.start }" end="${page.end }" var="i">
+					<c:if test="${page.pageno eq i}">
+						<li class="active"><a href="/pboard/board/list?pageno=${page.pageno }">${i }</a></li>
+					</c:if>
+					<c:if test="${page.pageno ne i}">
+						<li><a href="/pboard/board/list?pageno=${page.pageno }">${i }</a></li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${page.next > 0 }">
+					<li><a href="/pboard/board/list?pageno=${page.pageno }">다음으로</a></li>
+				</c:if>
+		</ul>	
+	</div>

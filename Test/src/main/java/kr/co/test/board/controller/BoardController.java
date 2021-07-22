@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.test.board.service.BoardService;
 import kr.co.test.board.vo.BoardVO;
@@ -42,26 +42,24 @@ public class BoardController {
 		return "board/list_view.page";
 	}
 
-	@RequestMapping(value = "/list_write.do", method = { RequestMethod.GET })
-	public String boardWrite(HttpServletRequest req, HttpServletResponse res) {
+	@RequestMapping(value = "/list_write.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String boardWrite(HttpServletRequest req, @ModelAttribute BoardVO boardVO, Model model) {
+		if (boardVO.getTitle() != null && boardVO.getContent() != null) {
+			boardService.insertBoard(boardVO);
+
+			List<BoardVO> list = new ArrayList<BoardVO>();
+			list = boardService.getBoardList();
+			model.addAttribute("list", list);
+
+			return "redirect:/list.do";
+		}
 		return "board/write.page";
-	}
-
-	@RequestMapping(value = "/list_write.do", method = { RequestMethod.POST })
-	public String boardWrite(@ModelAttribute BoardVO boardVO, Model model) {
-		boardService.insertBoard(boardVO);
-
-		List<BoardVO> list = new ArrayList<BoardVO>();
-		list = boardService.getBoardList();
-		model.addAttribute("list", list);
-
-		return "board/list.page";
 	}
 
 	@RequestMapping(value = "/list_delete.do", method = { RequestMethod.POST })
 	public String boardDelete(HttpServletRequest req, Model model) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		int bno = Integer.parseInt(req.getParameter("bno"));
+		Integer bno = Integer.parseInt(req.getParameter("bno"));
 		param.put("bno", bno);
 		boardService.boardDelete(param);
 
@@ -69,6 +67,23 @@ public class BoardController {
 		list = boardService.getBoardList();
 		model.addAttribute("list", list);
 
-		return "board/list.page";
+		return "redirect:/list.do";
 	}
+
+	@RequestMapping(value = "/list_Modify.do", method = { RequestMethod.POST })
+	public String boardModify(RedirectAttributes red, @ModelAttribute BoardVO boardVO, Model model) {
+		HashMap<String, Object> param = new HashMap<>();
+		Integer bno = boardVO.getBno();
+		String title = boardVO.getTitle();
+		String content = boardVO.getContent();
+
+		param.put("bno", bno);
+		param.put("title", title);
+		param.put("content", content);
+
+		boardService.boardModify(param);
+		red.addAttribute("bno", bno);
+		return "redirect:/list_view.do";
+	}
+
 }

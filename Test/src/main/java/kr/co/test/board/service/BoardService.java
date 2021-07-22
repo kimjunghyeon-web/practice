@@ -13,4 +13,7 @@ public interface BoardService {
 	public void insertBoard(BoardVO boardVO);
 
 	public void boardDelete(HashMap<String, Object> param);
+
+	public void boardModify(HashMap<String, Object> param);
+
 }

@@ -22,6 +22,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO getBoardView(HashMap<String, Object> param) {
+		if (param.get("bno") != null) {
+			boardMapper.viewCnt(param);
+		}
 		return boardMapper.getBoardView(param);
 	}
 
@@ -33,6 +36,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void boardDelete(HashMap<String, Object> param) {
 		boardMapper.boardDelete(param);
+	}
+
+	@Override
+	public void boardModify(HashMap<String, Object> param) {
+		boardMapper.boardModify(param);
 	}
 
 }
